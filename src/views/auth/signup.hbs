@@ -1,0 +1,44 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <form class="card" action="/signup" method="POST">
+        <div class="card-header">
+          <h3>Regisztráció</h3>
+        </div>
+        <div class="card-body">
+          <label for="fullname">Teljes név:</label>
+          <input
+            type="type"
+            name="fullname"
+            placeholder="Kiss Ágnes"
+            class="form-control mb-3"
+            autofocus
+          />
+          <label for="username">Felhasználónév:</label>
+          <input
+            type="text"
+            name="username"
+            placeholder="kissagnes"
+            class="form-control mb-3"
+          />
+
+          <label for="password">Jelszó:</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Jelszó"
+            class="form-control mb-3"
+          />
+          <button class="btn btn-success btn-block">
+            Regisztráció
+          </button>
+        </div>
+      </form>
+
+      {{! Link }}
+      <p class="fs-5 text-center mt-3">Van már felhasználód?
+        <a href="/signin">Jelentkezz be itt</a>
+      </p>
+    </div>
+  </div>
+</div>

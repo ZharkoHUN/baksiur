@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+
+<div class='center'>
+<div class="row">
+  <div class="col-6">
+    <h1>Felhasználók</h1>
+    <h5>Összes: {{paginate.total}}</h5>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    
+    <a href="/admin/add" type="button" class="btn btn-primary align-self-center">+ Felhasználó hozzáadása</a> 
+  </div>
+  
+</div>
+
+<table id="table_admin" class="table table-striped" style='color:rgb(255, 255, 255); border: 1px solid rgb(58, 58, 58); width:100%;'>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Felhasználónév</th>
+      <th scope="col">Teljes név</th>
+      <th scope="col">Cím</th>
+      <th scope="col">Telefonszám</th>
+      <th scope="col">E-mail</th>
+      
+      <th scope="col">Weboldal</th>
+      <th scope="col">Admin</th>
+      <th scope="col" class="text-end">Művelet</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td {{#if_eq admin 1}}style="color:red;"{{/if_eq}}>{{username}}</td>
+      <td>{{fullname}}</td>
+      <td>{{contact}}</td>
+      <td><a href="tel:{{phone}}">{{phone}}</a></td>
+      <td>{{email}}</td>
+      
+      <td>{{#if_eq webpage "Nincs megadva"}} {{webpage}} {{else}} <a href="{{webpage}}" target="_blank">{{webpage}}</a>{{/if_eq}}</td>
+      <td>{{admin}}</td>
+      <td class="text-end">
+        <a href="/admin/edit/{{id}}" type="button" class="btn btn-warning btn-small"><i class="bi bi-pencil"></i></a>
+        <a href="/admin/delete/{{this.id}}" type="button" class="btn btn-danger btn-small"><i class="bi bi-person-x"></i></a>
+      </td>
+    </tr>
+
+    {{/each}}
+  </tbody>
+</table>
+</div>
+{{>datatablejs id="table_admin"}}

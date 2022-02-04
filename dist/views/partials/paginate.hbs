@@ -1,0 +1,9 @@
+<div class="pagination">
+    <a class="pagegomb" href="1">&laquo; Első</a>
+    {{#each array.arr}}
+        <a {{#if this.active}}style='color:red;'{{/if}} id='page_{{this.id}}' class="pagegomb paginate-margin" href="{{this.id}}">
+        {{this.id}}
+        </a>
+    {{/each}}
+<a class="pagegomb" href="{{lastpage}}">Utolsó &raquo;</a>
+</div>

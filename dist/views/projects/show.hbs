@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+
+<div class='center'>
+  <div class="row">
+    <div class="col-6">
+      <h1>{{project.name}}</h1>
+      <h5>{{project.contact}}</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="project-adatok-tab" data-toggle="tab" href="/projects/show/4#project-adatok" role="tab" aria-controls="project-adatok" aria-selected="true">Project adatai</a>
+        <a class="nav-link" id="project-csatolmanyok-tab" data-toggle="tab" href="/projects/show/4#project-csatolmanyok" role="tab" aria-controls="project-csatolmanyok" aria-selected="false">Csatolmányok</a>
+        <a class="nav-link" id="project-kepek-tab" data-toggle="tab" href="#project-kepek" role="tab" aria-controls="project-kepek" aria-selected="false">Képek</a>
+        <a class="nav-link" id="project-statusz-tab" data-toggle="tab" href="#project-statusz" role="tab" aria-controls="project-statusz" aria-selected="false">Státusz</a>
+        {{#if_eq admin 1}}
+          <a class="nav-link" id="project-kezeles-tab" data-toggle="tab" href="#project-kezeles" role="tab" aria-controls="project-kezeles" aria-selected="false">Kezelés</a>
+        {{/if_eq}}
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent" style="color:#fff;">
+        <div class="tab-pane fade show active" id="project-adatok" role="tabpanel" aria-labelledby="project-adatok-tab">
+          <table class="table table-striped" style="color:#fff;">
+            <tbody>
+              <tr>
+                <th scope="row">Név:</th>
+                <td>{{project.name}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Helyszín:</th>
+                <td>{{project.contact}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Leírás:</th>
+                <td>{{project.description}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Bejegyezve:</th>
+                <td>{{timeago project.created}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Határidő:</th>
+                <td style="background-color: {{project.color}};">{{formatdate project.expire}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Státusz:</th>
+                <td style="background-color: {{project.color}};">{{project.statusz}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="project-csatolmanyok" role="tabpanel" aria-labelledby="project-csatolmanyok-tab">
+          {{#if_eq folder 'nincs'}}
+            <h1>Nem található csatolmány</h1>
+          {{else}}
+          <table class="table table-striped" style="color:#fff; max-width:650px;">
+          <tbody>
+            {{#each folder}}
+                
+              <tr class="align-middle">
+                <th scope="row">{{this.file}}</th>
+                  <form action="/projects/download/{{this.file}}" method="GET">
+                  <td><a class="dl" href="/projects/download/{{../project.id}}/{{this.file}}" download><span>LETÖLTÉS</span>
+                  <span style=''>
+                    <h6>.{{this.ext}}
+
+                    </h6>
+                  </span>
+                </a></td></form>
+                {{#if_eq ../admin 1}}
+                <th scope="row" class="col-md-2 text-center">
+                  <a href="/projects/deletefile/{{../project.id}}/{{this.file}}" type="button" class="btn btn-danger btn-m">
+                <i class="bi bi-trash"></i>
+                 {{/if_eq}}
+            </a></th>
+              </tr>
+            
+            {{/each}}
+              </tbody>
+            </table>
+          {{/if_eq}}
+          {{#if_eq admin 1}}
+            <form ref='uploadForm' id='uploadForm' action="/projects/makedir/{{project.id}}" encType="multipart/form-data" method="POST">
+
+              {{! FILE }}
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 class="text-light mb-3 h4">Csatolmányok feltöltése</h1>
+              </div>
+                {{>fileselect id="filer" type="file"}}
+              </form>
+          {{/if_eq}}
+        </div>
+        <div class="tab-pane fade" id="project-kepek" role="tabpanel" aria-labelledby="project-kepek-tab">
+          {{#if_eq imagefolder "nincs"}}
+            <h1>Üres a galéria</h1>
+          {{else}}
+            <div class="photo-gallery">
+              <div class="container">
+                <div class="row photos">
+
+                  {{#each imagefolder}}
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                      {{#if_eq ../admin 1}}
+                      <a style="float:right;" href="/projects/deleteimage/{{../project.id}}/{{file}}">
+                        <button type="button" class="btn btn-danger btn-xs"><i class="bi bi-trash-fill fa-s"></i></button>  
+                      </a>
+                      {{/if_eq}}
+                      <a 
+                        href="{{dir}}" 
+                        data-lightbox="photos">
+                        <img class="img-fluid" 
+                        src="{{dir}}"></a>
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          {{/if_eq}}
+          {{#if_eq admin 1}}
+            <form ref='uploadForm' id='uploadForm' action="/projects/uploadimages/{{project.id}}" encType="multipart/form-data" method="POST">
+
+              {{! FILE }}
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                {{>fileselect id="filer" type="image"}}
+              </div>
+              </form>
+          {{/if_eq}}
+        </div>
+        <div class="tab-pane fade" id="project-kezeles" role="tabpanel" aria-labelledby="project-kezeles-tab">
+          <p>
+
+            <a href="/projects/edit/{{project.id}}" type="button" class="btn btn-warning btn-lg">Szerkesztés
+              <i class="bi bi-trash"></i>
+            </a>
+            <a href="/projects/delete/{{project.id}}" type="button" class="btn btn-danger btn-lg">Törlés
+              <i class="bi bi-trash"></i>
+            </a>
+            
+              
+      </p>
+
+        </div>
+        <div class="tab-pane fade show" id="project-statusz" role="tabpanel" aria-labelledby="project-statusz-tab">
+          {{#if_eq state "nincs"}}
+            <h1>Nincs elérhető státusz</h1>
+          {{else}}
+            <table id="table_projects" class="table table-striped center" style='color:rgb(255, 255, 255); border: 1px solid rgb(58, 58, 58)'>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Státusz</th>
+                  <th scope="col">Hozzáadva</th>
+                  <th scope="col">Készítő</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {{#each state}}
+                  <tr style="background-color: {{color}};">
+                    <td>{{state}}</td>
+                    <td>{{timeago date}}</td>
+                    <td>{{fullname}}
+                      {{#if_eq ../admin 1}}
+                      <a href="/projects/show/deletestate/{{../project.id}}/{{id}}" type="button" class="btn btn-danger btn-small"><i class="bi bi-person-x"></i></a>
+                      {{/if_eq}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          {{/if_eq}}
+          {{#if_eq admin 1}}
+          <form action="/projects/state/{{project.id}}" method="POST" class="card-body">
+
+              {{! Title and save button }}
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 class="text-light mb-3 h4">Státusz hozzáadása</h1>
+                <button class="btn btn-success btn-block">
+                  Hozzáadás
+                </button>
+              </div>
+
+              <label for="state">Státusz</label>
+              <textarea name="state" class="form-control bg-dark text-light mb-3" placeholder="Státusz tartalma" autofocus="autofocus"/></textarea>
+              </form>
+          {{/if_eq}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      $('#v-pills-tab a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      })
+    })
+  </script>
+</div>
+
+<script>
+// Javascript to enable link to tab
+var url = document.location.toString();
+if (url.match('#')) {
+    $('.nav-link').removeClass('active');
+    $('.tab-pane').removeClass('show');
+    $('.tab-pane').removeClass('active');
+    let tab = url.split('#')[1]
+    
+    $(`#${tab}`).addClass('show');
+    $(`#${tab}`).addClass('active');
+    $(`#${tab}-tab`).addClass('active');
+} 
+</script>

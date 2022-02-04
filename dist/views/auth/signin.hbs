@@ -1,0 +1,46 @@
+<div class="container p-4">
+  <div class="row">
+
+    <div class="col-md-4 mx-auto">
+      <form action="/signin" method="POST" class="card card">
+        <h3 class="text-center my-3">Bejelentkezés</h3>
+        <img
+          src="/img/logo.png"
+          alt="Logo Fazt"
+          class="card-img-top mx-auto m-2 rounded-circle w-50"
+        />
+        <div class="card-body">
+
+          <label for="username">Felhasználónév:</label>
+          <input
+            type="text"
+            name="username"
+            placeholder="Felhasználónév"
+            class="form-control mb-3"
+            autofocus
+          />
+
+          <label for="password">Jelszó:</label>
+          <div class="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Jelszó"
+              class="form-control mb-3"
+            />
+          </div>
+          <button class="btn btn-primary btn-block">
+            Bejelentkezés
+          </button>
+
+        </div>
+      </form>
+
+      {{! Link }}
+      <p class="fs-5 text-center mt-3">Nincs felhasználód?
+        <a href="/signup">Regisztrálj egyet itt</a>
+      </p>
+
+    </div>
+  </div>
+</div>

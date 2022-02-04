@@ -1,0 +1,32 @@
+<table id="table_edit" class="table center table-responsive table-sm" style='color:rgb(255, 255, 255); border: 1px solid rgb(58, 58, 58)'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Név</th>
+      <th scope="col">Email</th>
+      <th scope="col" class="text-end">Művelet</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each users}}
+    <tr style="background-color: {{color}};">
+      <th scope="row">{{id}}</th>
+      <td>{{username}}</td>
+      <td>{{fullname}}</td>
+      <td>{{email}}</td>
+      <td class="text-end">
+        {{#if_eq onproject false}}
+        <a href="/projects/edit/{{../project.id}}/adduser/{{id}}" type="button" class="btn btn-success btn-small">
+        <i class="bi bi-person-plus-fill"></i></a>
+        {{else}}
+        <a href="/projects/edit/{{../project.id}}/removeuser/{{id}}" type="button" class="btn btn-danger btn-small">
+        <i class="bi bi-person-x"></i></a>
+        {{/if_eq}}
+      </td>
+    </tr>
+
+    {{/each}}
+  </tbody>
+</table>

@@ -1,0 +1,416 @@
+
+<meta charset="UTF-8">
+    <div id="main-header">
+        <span class="headtext">Árajánlat készítés</span>
+    </div>
+    
+    <div id="main-cont">
+        <span class="headtext">Ügyfél adatai</span>
+        <div class="grides form__group field">
+            <input oninput="saveMetaChange()" type="input" class="form__field" placeholder="Név" name="box-name" id='box-name' required />
+            <label for="box-name" class="form__label">Név</label>
+        </div>
+        <div class="grides form__group field">
+            <input oninput="saveMetaChange()" type="input" class="form__field" placeholder="Elérhetőség" name="box-contact" id='box-contact' required />
+            <label for="box-contact" class="form__label">Elérhetőség</label>
+        </div>
+        <div class="grides form__group field">
+            <form autocomplete="off">
+                <div class="autocomplete" style="width:300px;">
+                    <input type="input" class="form__field" placeholder="Település" name="myCountry" id='myInput' required />
+                    <label for="myInput" class="form__label">Település</label>
+                </div>
+            </form>
+        </div>
+        <div class="grides form__group field">
+            <input oninput="saveMetaChange()" type="input" class="form__field" placeholder="Utca, házszám" name="box-street" id='box-street' required />
+            <label for="box-street" class="form__label">Utca, házszám</label>
+        </div>
+        <div class="grides form__group field">
+            <input oninput="saveMetaChange()" type="input" class="form__field" placeholder="Árajánlat ........" name="box-subject" id='box-subject' required />
+            <label for="box-subject" class="form__label">Árajánlat ........</label>
+        </div>
+    </div>
+    <div id="item-cont">
+        <div id="main-item-input">
+            <span class="headtext">Tétel hozzáadása</span>
+            <div id="input-cont-item">
+                <div class="grides form__group field">
+                    <input type="input" class="form__field" placeholder="Tétel megnevezése" name="item-name" id='item-name' required />
+                    <label for="item-name" class="form__label">Tétel megnevezése</label>
+                </div>
+                <div class="grides form__group field">
+                    <input type="input" class="form__field" placeholder="Leírás, megjegyzés" name="item-desc" id='item-desc' required />
+                    <label for="item-desc" class="form__label">Leírás, megjegyzés</label>
+                </div>
+                <div class="grides form__group field">
+                    <input type="input" class="form__field" placeholder="Darabszám" name="item-qty" id='item-qty' required />
+                    <label for="item-qty" class="form__label">Darabszám</label>
+                </div>
+                <div class="grides form__group field">
+                    <input type="input" class="form__field" placeholder="Ár" name="item-amount" id='item-amount' required />
+                    <label for="item-amount" class="form__label">Ár</label>
+                </div><br>
+                <button class="icon-btn add-btn" id="kisbut">
+                    <div class="add-icon"></div>
+                    <div class="btn-txt">Hozzáadás</div>
+                </button>
+            </div>
+        </div>
+        
+        <div id="main-item-list">
+            <span class="headtext">Tételek összegzése</span>
+            <div id="totalval" class="headtext">Végösszeg: 0 Ft </div>
+            <div id="itemtotal">
+
+            </div>
+        </div>
+
+        <div class="downloadbtn" id="long" title="Letöltés">
+            <i class="fas fa-arrow-down fa-3x" ></i>
+        </div>
+
+    </div>
+    
+</html>
+
+
+<style>
+#countryList {
+    width: 70%;
+    padding-left: 11%;
+}
+
+.autocomplete {
+ 
+}
+
+#totalval {
+    position: absolute;
+    right: 5vw;
+}
+
+#pics {
+    position: absolute;
+    left: 0;
+    top:-10px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #000000;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #000000;
+  color:white;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  border-bottom: 1px solid #d4d4d4;
+  background-color: #000000;
+  color:white;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #000000;
+  color:white;
+  background-color: rgb(31, 87, 143);
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+    #totalandbut {
+        text-align: center;
+        position: absolute;
+        bottom:40px;
+        right:25vw;
+    }
+    #long {
+        position: absolute;
+        bottom:5%;
+        right:5%;
+    }
+    #itemtotal {
+        width: 90%;
+        padding:40px;
+    }
+
+    .itemhehe {
+        color:rgb(163, 163, 163);
+        font-weight: bold;
+        text-align: left;
+        border: 1px solid #158f80;
+        border-radius: 3px;
+        padding:20px;
+    }
+    .itemhehe:hover {
+        background-color:#1e4e49;
+    }
+
+    .itemhehe-2 {
+        padding:10px;
+    }
+    .itemhehe-2:hover {
+        background-color:#1b3634;
+    }
+
+    .deletebtn:hover{
+        cursor: pointer;
+    }
+
+    #input-cont-item{
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+    #main-item-input {
+        background-color: rgb(36, 36, 36);
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        border: 1px solid black;
+    }
+    #main-item-list {
+        background-color: rgb(36, 36, 36);
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        border: 1px solid black;
+    }
+    #item-cont {
+        width: 100vw;
+        height: 75vh;
+        min-height: 75vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 0;
+        padding: 0;
+    }
+    .grides {
+        text-align: center;
+        width: 100%;
+    }
+    .headtext {
+        background:linear-gradient(to right, #11998e, #38ef7d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size:xx-large;
+    }
+    .lilheadtext {
+        background:linear-gradient(to right, #11998e, #38ef7d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size:larger;
+    }
+
+    .infotext {
+        background:linear-gradient(to right, #11998e, #38ef7d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size:large;
+    }
+
+    #main-header {
+        text-align: center;
+        width: 100vw;
+        background-color: rgb(39, 39, 39);
+        padding:10px;
+        border: 2px solid black;
+        max-width: 100vw;
+    }
+
+    #main-cont {
+        width: 100vw;
+
+        background-color: rgb(80, 80, 80);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        padding: 15px;
+
+    }
+    #main-header > h1 {
+        color:honeydew;
+    }
+
+    .main-hr {
+  width: 30%;
+  border: none;
+  border-top: 1px solid #c3c3c3;
+}
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+}
+
+.downloadbtn {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #000000;
+  background: #32d979;
+  border-radius: 200px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  text-align: center;
+}
+
+.downloadbtn:hover {
+  background: #187a43;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  width: 120px;
+  cursor: pointer;
+}
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: red;
+}
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: red;
+  overflow: hidden;
+}
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+    
+    /**/
+    .form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 50%;
+    }
+
+    .form__field {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1rem;
+    color: #fff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    }
+    .form__field::placeholder {
+    color: transparent;
+    }
+    .form__field:placeholder-shown ~ .form__label {
+    font-size: 1rem;
+    cursor: text;
+    top: 20px;
+    }
+
+    .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+    }
+
+    .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+    }
+    .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+    }
+
+    /* reset input */
+    .form__field:required, .form__field:invalid {
+    box-shadow: none;
+    }
+
+    /* demo */
+</style>

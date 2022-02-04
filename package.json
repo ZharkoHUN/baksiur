@@ -1,0 +1,45 @@
+{
+  "name": "nodejs-mysql-notes",
+  "version": "1.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js --exec ./node_modules/.bin/babel-node src/index.js",
+    "start": "node dist/index.js",
+    "compile": "babel src -d dist",
+    "clean": "rimraf dist",
+    "copyfiles": "ncp ./src/views ./dist/views && ncp ./src/public ./dist/public",
+    "build": "npm run clean && npm run compile && npm run copyfiles"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-fileupload": "^1.2.1",
+    "express-handlebars": "^6.0.2",
+    "express-mysql-session": "^2.1.7",
+    "express-session": "^1.17.2",
+    "formidable": "^2.0.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.2",
+    "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "ncp": "^2.0.0",
+    "nodemon": "^2.0.15",
+    "rimraf": "^3.0.2"
+  }
+}

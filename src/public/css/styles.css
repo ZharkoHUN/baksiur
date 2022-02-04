@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+body {
+  background: #141518;
+  font-family: "Oswald", sans-serif;
+  overflow : -moz-scrollbars-vertical;
+    overflow-y : scroll; 
+  height: 100vh;
+}
+
+.index {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+  background: black !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.nav-link:hover {
+  background-color: rgb(95, 116, 160);
+}
+
+.pagegomb:hover
+{
+  background-color: rgb(19, 33, 65);
+}
+
+.masthead {
+  color: white;
+  min-height: 30rem;
+  width: 100%;
+  height: 100%;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  /*background: url("/img/background.jpeg");*/
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.masthead h1 {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 992px) {
+  .masthead {
+    height: 100vh;
+  }
+  .masthead h1 {
+    font-size: 5.5rem;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid rgb(53, 53, 53);
+  border-radius: 10px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #1b1b1b}
+
+
+.center {
+  margin: auto;
+  max-width:1500px;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  color: rgb(214, 214, 214);
+}
+
+label {
+  color:#fff;
+}
+
+/* Galéria */
+.photo-gallery {
+  color:#313437;
+}
+
+.photo-gallery p {
+  color:#7d8285;
+}
+
+.photo-gallery h2 {
+  font-weight:bold;
+  margin-bottom:40px;
+  padding-top:40px;
+  color:inherit;
+}
+
+@media (max-width:767px) {
+  .photo-gallery h2 {
+    margin-bottom:25px;
+    padding-top:25px;
+    font-size:24px;
+  }
+}
+
+.photo-gallery .intro {
+  font-size:16px;
+  max-width:500px;
+  margin:0 auto 40px;
+}
+
+.photo-gallery .intro p {
+  margin-bottom:0;
+}
+
+.photo-gallery .photos {
+  padding-bottom:20px;
+}
+
+.photo-gallery .item {
+  padding-bottom:30px;
+}
+
+.navbar-collapse.in {
+  display: block !important;
+}
+
+/* -- */
+.dl {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  margin: 5px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 50px;
+}
+
+.dl span {
+  background: #f2594b;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: normal;
+  padding: 5px 10px;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.dl span:last-child {
+  margin-left: -20px;
+}
+
+.dl:before,
+.dl:after {
+  border: solid 3px #9fb4cc;
+  border-radius: 4px;
+  content: '';
+  display: block;
+  height: 35px;
+  left: 50%;
+  margin: -17px 0 0 -12px;
+  position: absolute;
+  top: 50%;
+  /*transform:translate(-50%,-50%);*/
+  
+  width: 25px;
+}
+
+.dl:hover:before,
+.dl:hover:after {
+
+}
+/*.dl:before{transform:translate(-30%,-60%);}*/
+
+.dl:before {
+  margin: -23px 0 0 -5px;
+}
+
+.dl:hover {
+
+  border-color: #9fb4cc;
+}
+
+.dl:active {
+  background: #dae0e8;
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, .25);
+}
+
+.dl span:first-child {
+  display: none;
+}
+
+.dl:hover span:first-child {
+  display: inline-block;
+}
+
+.dl:hover span:last-child {
+  display: none;
+}

@@ -1,0 +1,57 @@
+<meta charset="utf-8">
+
+<div class='center'>
+<div class="row">
+  <div class="col-6">
+    <h1>Projectek {{title}}</h1>
+    <h5>Összes: {{paginate.total}}</h5>
+  </div>
+  {{#if_eq isadmin 1}}
+  <div class="col-6 d-flex justify-content-end">
+  <a href="/projects/add" type="button" class="btn btn-primary align-self-center">+ Project hozzáadása</a>
+  </div>
+  {{/if_eq}}
+</div>
+<table id="table_projects" class="table table-striped center" style='color:rgb(255, 255, 255); border: 1px solid rgb(58, 58, 58)'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Név</th>
+      <th scope="col">Elérhetőség</th>
+      <th scope="col">Készült</th>
+      <th scope="col">Határidő</th>
+      <th scope="col">Kezelők</th>
+      <th scope="col">Kuncsaftok</th>
+      {{#if_eq isadmin 1}}<th scope="col">Bevétel</th>{{/if_eq}}
+      {{#if_eq isadmin 1}}<th scope="col">Kiadás</th>{{/if_eq}}
+      <th scope="col">Státusz</th>
+      <th scope="col" class="text-end">Művelet</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each project}}
+    <tr style="background-color: {{color}};">
+      <th scope="row">{{id}}</th>
+      <td>{{name}}</td>
+      <td>{{contact}}</td>
+      <td>{{timeago created}}</td>
+      <td>{{formatdate expire}}</td>
+      <td>{{workers}}</td>
+      <td>{{owners}}</td>
+      {{#if_eq ../isadmin 1}}<td>{{formatCurrency reward}}</td>{{/if_eq}}
+      {{#if_eq ../isadmin 1}}<td>{{formatCurrency cost}}</td>{{/if_eq}}
+      <td>{{statusz}}</td>
+
+      <td class="text-end">
+        <a href="/projects/show/{{id}}" type="button" class="btn btn-primary btn-small"><i class="bi bi-eye"></i></a>
+        {{#if_eq ../isadmin 1}}<a href="/projects/edit/{{id}}" type="button" class="btn btn-warning btn-small"><i class="bi bi-pencil"></i></a>{{/if_eq}}
+        {{#if_eq ../isadmin 1}}<a href="/projects/delete/{{this.id}}" type="button" class="btn btn-danger btn-small"><i class="bi bi-person-x"></i></a>{{/if_eq}}
+      </td>
+    </tr>
+
+    {{/each}}
+  </tbody>
+</table>
+</div>
+{{>datatablejs id="table_projects"}}

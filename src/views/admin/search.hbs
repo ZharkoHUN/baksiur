@@ -1,0 +1,65 @@
+<meta charset="utf-8">
+
+<div class='center'>
+<div class="row">
+  <div class="col-6">
+    <h1>Felhasználók (Összes: {{paginate.total}} | Oldalak: {{paginate.pages}})</h1>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+  </div>
+</div>
+<form action="/admin/search" method="POST" class="form-inline">
+  {{>searchbar}}
+</form>
+
+{{#if_eq talalatok 0}}
+  <h1 style="color:red;">Nincs találat!</h1>
+{{else}}
+  
+  <table class="table table-bordered center" style='color:rgb(255, 255, 255); border: 1px solid rgb(58, 58, 58)'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Felhasználónév</th>
+      <th scope="col">Teljes név</th>
+      <th scope="col">Cím</th>
+      <th scope="col">Telefonszám</th>
+      <th scope="col">E-mail</th>
+      
+      <th scope="col">Weboldal</th>
+      <th scope="col">Admin</th>
+      <th scope="col" class="text-end">Művelet</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      {{#each users}}
+      <tr>
+        <th scope="row">{{id}}</th>
+        <td {{#if_eq admin 1}}style="color:red;"{{/if_eq}}>{{username}}</td>
+        <td>{{fullname}}</td>
+        <td>{{contact}}</td>
+        <td><a href="tel:{{phone}}">{{phone}}</a></td>
+        <td>{{email}}</td>
+        
+        <td>{{#if_eq webpage "Nincs megadva"}} {{webpage}} {{else}} <a href="{{webpage}}" target="_blank">{{webpage}}</a>{{/if_eq}}</td>
+        <td>{{admin}}</td>
+        <td class="text-end">
+          <a href="/admin/edit/{{id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i>Szerkesztés</a>
+          <a href="/admin/delete/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-person-x"></i> Törlés</a>
+        </td>
+      </tr>
+
+      {{/each}}
+  </tbody>
+</table>
+{{/if_eq}}
+</div>
+
+<script>
+    window.setInterval('refresh()', 10000); 	
+    function refresh() {
+        window.location.reload();
+    }
+    
+</script>

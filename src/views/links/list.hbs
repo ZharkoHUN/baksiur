@@ -1,0 +1,54 @@
+<meta charset="utf-8">
+
+<div class='center'>
+<div class="row">
+  <div class="col-6">
+    <h1>Tranzakciók</h1>
+    <h5>Összes: {{paginate.total}}</h5>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+  <a href="/links/add" type="button" class="btn btn-primary align-self-center">+ Tranzakció hozzáadása</a>
+  </div>
+</div>
+<table id="table_links" class="table table-striped center" style='color:rgb(255, 255, 255); border: 1px solid rgb(58, 58, 58)'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Megnevezés</th>
+      <th scope="col">Összeg</th>
+      <th scope="col">Leírás</th>
+      <th scope="col">Típus</th>
+      <th scope="col">Készítő</th>
+      <th scope="col">Rögzítve</th>
+      <th scope="col" class="text-end">Művelet</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each links}}
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{title}}</td>
+      <td>{{formatCurrency url}} Ft</td>
+      <td>{{description}}</td>
+        {{#if_eq type "bevétel"}}
+          <td style='background-color: #1b2513'>
+          <span style='color:rgb(22, 199, 22);'>
+        {{else}}
+          <td style='background-color: #251313'>
+          <span style='color:rgb(197, 38, 38);'>
+        {{/if_eq}}
+        Típus: {{type}}</span>
+      </td>
+      <td>{{creator}}</td>
+      <td>{{timeago created_at}}</td>
+      <td class="text-end">
+        <a href="/links/edit/{{id}}" type="button" class="btn btn-warning btn-small"><i class="bi bi-pencil"></i></a>
+        <a href="/links/delete/{{this.id}}" type="button" class="btn btn-danger btn-small"><i class="bi bi-person-x"></i></a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>
+{{>datatablejs id="table_links"}}

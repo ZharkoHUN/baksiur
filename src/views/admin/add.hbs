@@ -1,0 +1,73 @@
+<div class="container p-4 h-100">
+  <div class="row h-75 d-flex align-items-center">
+    <div class="col-md-4 mx-auto">
+      <div class="card bg-dark">
+        <form action="/admin/add" method="POST" class="card-body">
+
+          {{! Title and save button }}
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="text-light mb-3 h4">Új felhasználó hozzáadása</h1>
+            <button class="btn btn-success btn-block">
+              Mentés
+            </button>
+          </div>
+          <label for="username">Felhasználónév:</label>
+          <input
+            type="text"
+            name="username"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Felhasználónév"
+          />
+          <label for="password">Jelszó:</label>
+          <input
+            type="text"
+            name="password"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Jelszó"
+          />
+          <label for="fullname">Teljes név</label>
+          <input
+            type="text"
+            name="fullname"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Teljes név"
+            autofocus
+          />
+
+
+          <label for="phone">Telefonszám:</label>
+          <input
+            type="text"
+            name="phone"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="+36 20 123 4567"
+          />
+          <label for="email">Email:</label>
+          <input
+            type="text"
+            name="email"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Email"
+          />
+
+          <label for="webpage">Weboldal:</label>
+          <input
+            type="text"
+            name="webpage"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="https://link.hu"
+          />
+
+          <label for="contact">Cím:</label>
+          <textarea
+            name="contact"
+            rows="2"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Cím"
+          ></textarea>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<video autoplay muted id="myVideo">
+  <source src="./img/bg.mp4" type="video/mp4">
+</video>
+
+<main class="index" id="main_index">
+  <meta charset="utf-8">
+  <header class="masthead d-flex" >
+    <div class="container text-center my-auto">
+      <h1 class="mb-1"><i class="fas fa-link"></i> Horváth-Kapuk adminisztráció</h1>
+      <h3 class="mb-5">
+        <em></em>
+      </h3>
+      {{#if_eq loggedin 0}}
+      <a class="btn btn-primary btn-lg" href="/signin">
+          Bejelentkezés
+      </a>
+      {{/if_eq}}
+    </div>
+    <div class="overlay"></div>
+  </header>
+</main>
+
+
+<style>
+  #myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+
+#main_index {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  z-index: 1;
+}
+
+.navbar {
+  z-index: 2;
+}
+</style>

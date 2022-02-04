@@ -1,0 +1,10 @@
+Teendők: 
+    -Kapcsolatok (fontos telefonszámok, email, cím, név, weblap, megjegyzés) <- Hozzá lehet rendelni projectekhez, lehessen színezni
+    -Projectek fül (Adott munka amit csinálunk)
+    -Kiadást lehessen projecthez rendelni
+    -Todo fül (határidőnapló, ha lejárt piros, ha nem zöld, figyelmeztessen hogy hány nap van hátra)
+    -Todo fül tevékenységekhez is, az user láthassa, de az admin tudja csak szerkeszteni
+    -Kiadások összegzése, grafikon
+    -Anyag ár lista
+    -Tranzakciókhoz füleket
+    -Pénzügyi elemzés projectenként (levezetve a kiadás + bevétel + haszon)

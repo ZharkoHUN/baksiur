@@ -1,0 +1,53 @@
+<div class="container p-4 h-100">
+  <div class="row h-75 d-flex align-items-center">
+    <div class="col-md-4 mx-auto">
+      <div class="card bg-dark">
+        <form action="/links/add" method="POST" class="card-body">
+
+          {{! Title and save button }}
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="text-light mb-3 h4">Új tranzakció hozzáadása</h1>
+            <button class="btn btn-success btn-block">
+              Mentés
+            </button>
+          </div>
+          <label for="title">Cím:</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Cím"
+            autofocus
+          />
+
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <h7 class="text-light mb-3 h7">Típus</h7>
+            <label for="type">Típus</label>
+              <select name="type">
+                <option value="kiadás" selected="selected">Kiadás</option>
+                <option value="bevétel">Bevétel</option>
+              </select>
+          </div>
+          
+
+          <label for="url">Összeg:</label>
+          <input
+            type="text"
+            name="url"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Összeg"
+          />
+
+          <label for="description">Megjegyzés:</label>
+          <textarea
+            name="description"
+            rows="2"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Megjegyzés"
+          ></textarea>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="container d-flex mt-100">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Fájlok feltöltése</h4>
+            <div class="file-drop-area"> 
+                <span class="choose-file-button">Fájlok böngészése</span> 
+                <span class="file-message">vagy csak húzd be ide a fájlokat</span> 
+                <input class="file-input" type="file" name="filer" id="{{id}}" {{#if_eq type "image"}}accept="image/png, image/gif, image/jpeg"{{/if_eq}} multiple>
+                
+            </div>
+            <button class="btn btn-success btn-block">
+                  Feltöltés
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .file-drop-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 450px;
+    max-width: 100%;
+    padding: 25px;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    transition: 0.2s
+}
+
+.choose-file-button {
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    font-size: 12px;
+    text-transform: uppercase
+}
+
+.file-message {
+    font-size: small;
+    font-weight: 300;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0
+}
+
+.mt-100 {
+    margin-top: 100px
+}
+</style>
+
+<script>
+$(document).on('change', '.file-input', function() {
+    var filesCount = $(this)[0].files.length;
+    var textbox = $(this).prev();
+
+    if (filesCount === 1) {
+        var fileName = $(this).val().split('\\').pop();
+        textbox.html(fileName);
+    } else {
+        textbox.html('<h6>'+ filesCount + ' fájl kiválasztva</h6>');
+        for(let i=0;i<$(this)[0].files.length;i++)
+        {
+            textbox.append(`${$(this)[0].files[i].name}<br>`)
+        }
+    }
+});
+</script>

@@ -1,0 +1,78 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card bg-dark border border-dark">
+        <div class="card-body">
+          <form action="/projects/edit/{{project.id}}" method="POST">
+            <label for="name">Név:</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Project neve"
+            autocomplete="off"
+            value="{{project.name}}"
+          />
+          <label for="contact">Helyszín:</label>
+          <input
+            type="text"
+            name="contact"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Helyszín"
+            value="{{project.contact}}"
+          />
+          <label for="description">Leírás</label>
+          <textarea
+            name="description"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Leírás"
+            autofocus
+            value=""
+          /></textarea>
+
+
+          <label for="date">Határidő:</label>
+          <input
+            id="dater"
+            type="date"
+            name="expire"
+            class="form-control bg-dark text-light mb-3"
+            value="{{project.date}}"
+          />
+          <script>
+            let plusDays = (((60*1000)*60)*24)*180;
+            document.getElementById('dater').valueAsDate = new Date(Date.now() + plusDays);
+          </script>
+          <label for="reward">Ár:</label>
+          <input
+            type="text"
+            name="reward"
+            class="form-control bg-dark text-light mb-3"
+            placeholder="Ár"
+            value="{{project.reward}}"
+          />
+          <label for="owner"></label>
+          {{>searchtable}}
+
+            <div class="form-group">
+              <label for="finished" style='color:rgb(224, 19, 19)'>Befejezve: </label>
+              <input name='finished' type="checkbox" id="finishCheck" {{#if_eq project.statusz "Befejezett"}} checked {{/if_eq}}>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success btn-block">
+                Mentés
+              </button>
+              <a href="/projects/show/{{project.id}}">
+                <button type="button" class="btn btn-warning btn-block">
+                    Mégse
+                </button>
+              </a>
+            </div>
+          </form><br>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{>datatablejs id="table_edit"}}
